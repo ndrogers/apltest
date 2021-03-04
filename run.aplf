@@ -12,7 +12,7 @@
      tc←⍵,'_tests' ⍝ the test-case variable name in namespace ⍺
 
     ⍝ DFNS::
-     failMSG←{(↓↑'Input   :' 'Expected:' 'Got     :'),⍪⍕¨⍵} ⍝ inform the user what failed
+     failMSG←{(↓↑'   Input: ' 'Expected: ' '     Got: '),⍪⍕¨⍵} ⍝ inform the user what failed
      passMSG←{ ⍺←0 ⋄ (≢⍵)(+/⍵)(+/~⍵)(+/⍺) } ⍝ ⍺ ←→ errors, ⍵ ←→ passing, boolean array 
 
     ⍝ ERROR::
