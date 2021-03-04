@@ -128,13 +128,22 @@ my_fn←{+/⍵}
 my_fn_tests←(1 1) ((1 2) 3) ((2 4) 6) ((2 8 20) 30)
 ```
 
+
+Now if we run the same example yet again, we'll get the same results. To run test cases for a single dfn, you can always call the test suite this way:
+
 ```APL
-      test #.examples.my_namespace
+      #.examples.my_namespace test 'my_fn'
 ┌───────────────────────┬───┬──────┬──────┬─────┬──────┐
 │#.EXAMPLES.MY_NAMESPACE│RAN│PASSED│FAILED│ERROR│REPORT│
 ├───────────────────────┼───┼──────┼──────┼─────┼──────┤
 │TOTALS                 │4  │4     │0     │0    │PASS  │
 └───────────────────────┴───┴──────┴──────┴─────┴──────┘
+```
+
+In this specific instance, the results of `ns test 'fn'` and `test ns` are the same because there is only 1 dfn in `#examples.my_namespace`. But as you add more test cases and dfns, use `test ns` to run all of them, or `ns test 'fn'` to run a select test.
+```
+      {(test ⍵)≡⍵ test'my_fn'}#.examples.my_namespace
+1
 ```
 
 
