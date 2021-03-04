@@ -1,8 +1,16 @@
 meta_test←{
-    r←test ⍬
-    r←test #.aoc2015
-    r←#.aoc2015 test 's01' 's02'
-    r←#.aoc2015 test 's01'
-    r←#.aoc2015 test 'notafn'
+    ⍝ SPECIAL CASES::
+    ⍝ NOTE:: examples defines no dfns, so n/a is returned
+     ns←#.examples.aoc2015
+
+    ⍝NOTE:: same as previous run, but "ns" is now defined in #
+     ⎕ ←test ⍬ 
+
+    
+     ⎕ ←#.examples test ⍬   ⍝ test namespaces in ⍺
+     ⎕ ←test ns             ⍝ only test namespace ⍵
+     ⎕ ←ns test 's01' 's02'
+     ⎕ ←ns test 's01'
+     ⎕ ←ns test 'notafn'
     'No errors in testing framework'
 }

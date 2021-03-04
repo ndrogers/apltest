@@ -2,6 +2,11 @@
 
 A simple test reporting tool with examples. For complete example usage see `./meta_test.aplf` as it runs every possible combination of the test function. 
 
+
+
+## Additional Resources:
+The comments in the source files are to be considered additional documentation, and kept up to date before any push. If you would like to know more about the implementation, please read the comments as a stand alone documentation source. 
+
 ## Usage
 
 To use this project:
@@ -15,39 +20,41 @@ The entry point to this test reporting tool is `./test.aplf`
 
 To execute all test cases in this project:
 ```APL
-    test ⍬
-┌─────────────┬─────────────┬─────────────────────────────────────────────────────────────┐
-│AOC2015 FNS  │REPORT       │DESCRIPTION                                                  │ 
-├─────────────┼─────────────┼─────────────────────────────────────────────────────────────┤
-│s01          │┌────────┬──┐│PASS                                                         │
-│             ││RAN:    │10││                                                             │
-│             │├────────┼──┤│                                                             │
-│             ││PASSED: │10││                                                             │
-│             │└────────┴──┘│                                                             │
-├─────────────┼─────────────┼─────────────────────────────────────────────────────────────┤
-│s02          │┌────────┬─┐ │PASS                                                         │
-│             ││RAN:    │2│ │                                                             │
-│             │├────────┼─┤ │                                                             │
-│             ││PASSED: │2│ │                                                             │
-│             │└────────┴─┘ │                                                             │
-├─────────────┼─────────────┼─────────────────────────────────────────────────────────────┤
-│s03          │┌────────┬─┐ │┌──────────┬──────────┬──────────┬──────────┐                │
-│             ││RAN:    │5│ ││Input:   1│Input:   1│Input:   1│Input:   1│                │
-│             │├────────┼─┤ │├──────────┼──────────┼──────────┼──────────┤                │
-│             ││PASSED: │1│ ││Expected:5│Expected:6│Expected:7│Expected:8│                │
-│             │├────────┼─┤ │├──────────┼──────────┼──────────┼──────────┤                │
-│             ││FAILED: │4│ ││Got:     2│Got:     2│Got:     2│Got:     2│                │
-.............................................................................................
-│             │             ││Got:     92│Got:     2│Got:     20│Got:     91│Got:     9  ││
-│             │             │└───────────┴──────────┴───────────┴───────────┴────────────┘│
-└─────────────┴─────────────┴─────────────────────────────────────────────────────────────┘ 
-    
+  #.examples test ⍬
+
+┌────────────────┬───┬──────┬──────┬─────┬──────────────────────────────────────────────────────────────┐
+│AOC2015 FNS     │RAN│PASSED│FAILED│ERROR│REPORT                                                        │
+├────────────────┼───┼──────┼──────┼─────┼──────────────────────────────────────────────────────────────┤
+│s03             │5  │1     │4     │0    │┌──────────┬──────────┬──────────┬──────────┐                 │
+│                │   │      │      │     ││Input   :1│Input   :1│Input   :1│Input   :1│                 │
+│                │   │      │      │     │├──────────┼──────────┼──────────┼──────────┤                 │
+│                │   │      │      │     ││Expected:5│Expected:6│Expected:7│Expected:8│                 │
+│                │   │      │      │     │├──────────┼──────────┼──────────┼──────────┤                 │
+│                │   │      │      │     ││Got     :2│Got     :2│Got     :2│Got     :2│                 │
+│                │   │      │      │     │└──────────┴──────────┴──────────┴──────────┘                 │
+├────────────────┼───┼──────┼──────┼─────┼──────────────────────────────────────────────────────────────┤
+│TOTALS          │17 │13    │4     │0    │FAILED: s03                                                   │
+├────────────────┼───┼──────┼──────┼─────┼──────────────────────────────────────────────────────────────┤
+│AOC2016 FNS     │RAN│PASSED│FAILED│ERROR│REPORT                                                        │
+├────────────────┼───┼──────┼──────┼─────┼──────────────────────────────────────────────────────────────┤
+│TOTALS          │0  │0     │0     │0    │PASS                                                          │
+├────────────────┼───┼──────┼──────┼─────┼──────────────────────────────────────────────────────────────┤
+│FAIL_DEMO FNS   │RAN│PASSED│FAILED│ERROR│REPORT                                                        │
+├────────────────┼───┼──────┼──────┼─────┼──────────────────────────────────────────────────────────────┤
+│will_error      │2  │0     │2     │2    │┌───────────────────┬───────────────────┐                     │
+│                │   │      │      │     ││Input   :1         │Input   :3         │                     │
+·········································································································
+│MY_NAMESPACE FNS│RAN│PASSED│FAILED│ERROR│REPORT                                                        │
+├────────────────┼───┼──────┼──────┼─────┼──────────────────────────────────────────────────────────────┤
+│TOTALS          │3  │3     │0     │0    │PASS                                                          │
+└────────────────┴───┴──────┴──────┴─────┴──────────────────────────────────────────────────────────────┘
 ```
 
 
 
 |RESULT|⍺|⍵|Example|
 |---|---|---|---|
+|Perform `test ⍬` inside namespace ⍺. For each namespace in ⍺, run every dfn with their corresponding test cases.|namespace|⍬|`#.examples test ⍬`|
 |Run every dfn defined in each namespace in `#` with their corresponding test cases||⍬|`test ⍬`|
 |Run every defn defined in ⍵ with their corresponding test cases||namespace|`test #.aoc2015`|
 |Run the dfns ⍵ defined in ⍺|namespace|nested charvec|`#.aoc2015 test 's01' 's02`|
@@ -55,7 +62,7 @@ To execute all test cases in this project:
 
 ## Defining your own tests and test cases
 
-Create a new file named `my_namespace.apln` containing:
+Create a new file named `./examples/my_namespace.apln` containing:
 ```APL
 :Namespace my_namespace
     
@@ -75,26 +82,55 @@ This test will not execute because there are no test cases, and my_fn returns no
 To defined our first case, we'll change the values to the following:
 ```APL
 my_fn←{+/⍵}
-my_fn_tests←(1 1)((1 2) 3)((2 8 20) 30)
+my_fn_tests←(1 1)
+```
+But this will not work correctly, returning that 2 tests passed.`my_fn_tests` is a nested vector, so if there is a single test case, define it as the following:
+```APL
+my_fn←{+/⍵}
+my_fn_tests←,⊂(1 1)
 ```
 
-Each cell is a tuple containing strictly 2 values. First is the input, second is the expected result.
+You will usually want to have more than 1 test case per dfn, so to add a few more:
+```APL
+my_fn←{+/⍵}
+my_fn_tests←(1 1) ((1 2) 3) ((2 4) 8) ((2 8 20) 30)
+```
+Notice that the new test cases contain a tuple of arguments. Each cell is a tuple containing strictly 2 values. First is the input, second is the expected result. In the first test case, our input is `1`, and our expected result is `1`. In the last case, our input is `2 8 20` and our expected result is `30`
 
 Now call `test` to run this test:
 
 ```APL
-    test #.my_namespace         ⍝ will run all test cases in the namespace
-    
-    #.my_namespace test 'my_fn' ⍝ will only run my_fn_tests
-┌──────────────────┬────────────┬───────────┐
-│#.MY_NAMESPACE FNS│REPORT      │DESCRIPTION│
-├──────────────────┼────────────┼───────────┤
-│my_fn             │┌────────┬─┐│PASS       │
-│                  ││RAN:    │3││           │
-│                  │├────────┼─┤│           │
-│                  ││PASSED: │3││           │
-│                  │└────────┴─┘│           │
-└──────────────────┴────────────┴───────────┘
+      test #.examples.my_namespace
+┌───────────────────────┬───┬──────┬──────┬─────┬──────────────┐
+│#.EXAMPLES.MY_NAMESPACE│RAN│PASSED│FAILED│ERROR│REPORT        │
+├───────────────────────┼───┼──────┼──────┼─────┼──────────────┤
+│my_fn                  │4  │3     │1     │0    │┌────────────┐│
+│                       │   │      │      │     ││Input   :2 4││
+│                       │   │      │      │     │├────────────┤│
+│                       │   │      │      │     ││Expected:8  ││
+│                       │   │      │      │     │├────────────┤│
+│                       │   │      │      │     ││Got     :6  ││
+│                       │   │      │      │     │└────────────┘│
+├───────────────────────┼───┼──────┼──────┼─────┼──────────────┤
+│TOTALS                 │4  │3     │1     │0    │FAILED: my_fn │
+└───────────────────────┴───┴──────┴──────┴─────┴──────────────┘
+```
+
+OOPS! This failed. Looks like one of the test cases failed. This isn't the functions faul however, our test case is poorly defined because `8 ≠ +/ 2 4`. In this case rather than modifying our function, we'll make sure our test cases are correct by either changing the expected result or the arguments.
+
+
+```APL
+my_fn←{+/⍵}
+my_fn_tests←(1 1) ((1 2) 3) ((2 4) 6) ((2 8 20) 30)
+```
+
+```APL
+      test #.examples.my_namespace
+┌───────────────────────┬───┬──────┬──────┬─────┬──────┐
+│#.EXAMPLES.MY_NAMESPACE│RAN│PASSED│FAILED│ERROR│REPORT│
+├───────────────────────┼───┼──────┼──────┼─────┼──────┤
+│TOTALS                 │4  │4     │0     │0    │PASS  │
+└───────────────────────┴───┴──────┴──────┴─────┴──────┘
 ```
 
 
@@ -104,3 +140,6 @@ Now call `test` to run this test:
 - Errors caused by function execution are trapped, so any embedded error handling won't be handled or tested. 
 
 - No mocking is provided. Any dfn that requires user interaction, or anything depending on outside data isn't guaranteed. 
+
+## TODO:
+- `config.apln` should be used to house user configuration of the test suite. Config.apl should be its own source of documenation, containing options and potential configuration of results. 

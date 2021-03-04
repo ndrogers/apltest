@@ -1,7 +1,8 @@
  r←(namespace trap fn)args
- ⍝ Report whether an error ocurred during execution of test case
  :Trap 0
+    ⍝ Attempt to run fn inside namespace with args
      r←(namespace⍎fn) args
  :Else
-     r←,⊂'TEST:ERR'
+    ⍝ Report if error occurs
+     r←,⊂#.config.error
  :EndTrap
