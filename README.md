@@ -46,7 +46,7 @@ To execute all test cases in this project:
 
 
 
-|RESULT|⍺|⍵|Example&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; |
+|RESULT|⍺|⍵|Example|
 |---|---|---|---|
 |Run every dfn defined in each namespace in `#` with their corresponding test cases||⍬|`test ⍬`|
 |Run every defn defined in ⍵ with their corresponding test cases||namespace|`test #.aoc2015`|
