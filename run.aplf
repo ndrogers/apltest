@@ -1,0 +1,38 @@
+ run←{
+    ⍝ ⍵      ←→ name of function in ⍺
+    ⍝ ⍺      ←→ namespace containing ⍵
+    ⍝ return ←→ 3 element character vector
+    ⍝ Execute a function ⍵ in namespace ⍺ if `tc←⍺⍎⍵,'_tests'` is
+    ⍝ a named variable in the namespace.
+    ⍝ `tc` must be a vector of tuples of the form:
+    ⍝ `(input expected)(input expected)(input expected)...`
+    
+    ⍝ CONST::
+     ⎕IO←0
+     tc←⍵,'_tests' ⍝ the test-case variable name in namespace ⍺
+
+    ⍝ DFNS::
+     failMSG←{(↓↑'Input:' 'Expected:' 'Got:'),⍪⍕¨⍵} ⍝ inform the user what failed
+     passMSG←{
+         ⍺←0
+         s←'RAN:  ' 'PASSED: ' 'FAILED: ' 'ERROR:  '
+         n←(≢⍵)(+/⍵)(+/~⍵)(+/⍺)
+         ⍵≡⍬:2↑s,⍪⍕¨n
+         (0≠n)⌿s,⍪⍕¨n
+     }
+
+    ⍝ ERROR::
+     0=⍺.⎕NC ⍵ :⍵(2↑passMSG ⍬) ('Function: "',⍵ ,'" does not exist.') ⍝ exit when fname undefined
+     0=⍺.⎕NC tc:⍵(2↑passMSG ⍬) ('Variable: "',tc,'" does not exist.') ⍝ exit if cases undefined
+
+     (inputs expected)←↓⍉↑⍺⍎tc                             ⍝ split to vectors
+     0=≢inputs:⍵(passMSG ⍬) ('No test cases specified.')   ⍝ tc is an empty list
+
+    ⍝ BODY::
+     values  ← (⍺ trap ⍵)¨inputs                           ⍝ collect results
+     passed  ← expected≡¨values                            ⍝ match test
+     error   ← (⊂,⊂'TEST:ERR')⍷values                      ⍝ which tests crashed
+     failed  ← (~passed)/↓inputs,expected,⍪values          ⍝ select failing cases
+     ∨/~passed:⍵(error passMSG passed)(⍉,/↑failMSG¨failed) ⍝ fail message
+     ⍵(2↑0 passMSG passed) 'PASS'                          ⍝ pass message
+ }

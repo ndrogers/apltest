@@ -1,0 +1,7 @@
+:Namespace fail_demo
+will_fail ←{_←⍵⋄?100}
+will_error←{_←⍵⋄1÷0}
+    
+will_fail_tests ←(1 3)(4 5)(88 12)(49 16)(69 420)
+will_error_tests←(1 2)(3 4)
+:EndNamespace

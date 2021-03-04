@@ -1,0 +1,23 @@
+test←{
+    ⍝ ⍵ ≡ ⍬                ←→ run ns_test for all namespaces in #
+    ⍝ ⍵ ≡ namespace        ←→ run ns_test for ⍵
+    ⍝ ⍺ ≡ namespace        ←→ run cases for each fname in ⍵ in namespace ⍺
+    ⍝ ⍺ ≡ ns ^ ⍵ ≡ charvec ←→ run a single run in ⍺
+    ⍝ return 3-column character matrix
+    ⍝ Run a test configured by the form of the inputs
+
+    ⍝ CONST::
+     ⍺←⍬ 
+
+    ⍝ DFNS::
+     is_ns   ← {9.1=⎕NC⊂⍕⍵} ⍝ ⍵ is a namespace
+     is_char ← {80=⎕DR⍵}    ⍝ ⍵ is charvec
+     header  ← {1∘(819⌶)¨((⍕⍵),' fns') 'report' 'description'} ⍝ column names
+
+    ⍝ BODY::
+     ⍬≡⍵                    : ⊃⍪/{(header ⍵)⍪ns_test #⍎⍵}¨⎕NL¯9.1
+     is_ns ⍵                : (header ⍵)⍪ ns_test ⍵
+     (is_ns ⍺) ^ ~is_char ⍵ : (header ⍺)⍪↑⍺∘run¨⍵
+     (is_ns ⍺) ^  is_char ⍵ : (header ⍺)⍪↑⍺ run¨,⊂⍵
+     (⊂'Invalid argument format'),2⍴⊂⍬
+}

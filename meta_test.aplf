@@ -1,0 +1,8 @@
+meta_test←{
+    r←test ⍬
+    r←test #.aoc2015
+    r←#.aoc2015 test 's01' 's02'
+    r←#.aoc2015 test 's01'
+    r←#.aoc2015 test 'notafn'
+    'No errors in testing framework'
+}

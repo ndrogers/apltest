@@ -1,0 +1,7 @@
+ r←(namespace trap fn)args
+ ⍝ Report whether an error ocurred during execution of test case
+ :Trap 0
+     r←(namespace⍎fn) args
+ :Else
+     r←,⊂'TEST:ERR'
+ :EndTrap
