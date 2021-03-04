@@ -5,7 +5,7 @@ A simple test reporting tool with examples. For complete example usage see `./me
 
 
 ## Additional Resources:
-The comments in the source files are to be considered additional documentation, and kept up to date before any push. If you would like to know more about the implementation, please read the comments as a stand alone documentation source. 
+The comments in the source files are to be considered additional documentation, and kept up to date before any push. To learn more about the implementation, please read the comments as a stand alone documentation source. 
 
 ## Usage
 
@@ -60,7 +60,7 @@ To execute all test cases in this project:
 |Run the dfns ⍵ defined in ⍺|namespace|nested charvec|`#.aoc2015 test 's01' 's02`|
 |Run dfn ⍵ in ⍺|namespace|charvec|`#.aoc2015 test 's01'`|
 
-## Defining your own tests and test cases
+## Defining tests and test cases
 
 Create a new file named `./examples/my_namespace.apln` containing:
 ```APL
@@ -69,7 +69,7 @@ Create a new file named `./examples/my_namespace.apln` containing:
 :EndNamespace
 ```
 
-Inside that namespace we'll define a function, and a corresponding test case. Test cases are identified by appending `_tests` to the name of a given function.
+Inside that namespace, define a function, and a corresponding test case. Test cases are identified by appending `_tests` to the name of a given function.
 
 ```APL
 my_fn←{}
@@ -79,7 +79,7 @@ my_fn_tests←⍬
 
 This test will not execute because there are no test cases, and my_fn returns no results so calling it will probably result in an error. 
 
-To defined our first case, we'll change the values to the following:
+To defined the first case, change the values to the following:
 ```APL
 my_fn←{+/⍵}
 
@@ -92,7 +92,7 @@ my_fn←{+/⍵}
 my_fn_tests←,⊂(1 1)
 ```
 
-You will usually want to have more than 1 test case per dfn, so to add a few more:
+Usually more than 1 test case per dfn will be defined, so to add a few more:
 ```APL
 my_fn←{+/⍵}
 
@@ -119,7 +119,7 @@ Now call `test` to run all tests in our new namespace:
 └───────────────────────┴───┴──────┴──────┴─────┴───────────────┘
 ```
 
-OOPS! This failed. Looks like one of the test cases failed. This isn't the functions faul however, our test case is poorly defined because `8 ≠ +/ 2 4`. In this case rather than modifying our function, we'll make sure our test cases are correct by either changing the expected result or the arguments.
+OOPS! This failed. Looks like one of the test cases failed. The function didn't fail however, the test case is poorly defined because `8 ≠ +/ 2 4`. In this case rather than modifying `my_fn`, ensure the test cases are correct by either changing the expected result or the arguments.
 
 
 ```APL
@@ -129,7 +129,7 @@ my_fn_tests←(1 1) ((1 2) 3) ((2 4) 6) ((2 8 20) 30)
 ```
 
 
-Now if we run the same example yet again, we'll get the same results. To run test cases for a single dfn, you can always call the test suite this way:
+Now if the test is run, the same results are produced. To run test cases for a single dfn, the following argument form for `test` is valid:
 
 ```APL
       #.examples.my_namespace test 'my_fn'
@@ -140,7 +140,7 @@ Now if we run the same example yet again, we'll get the same results. To run tes
 └───────────────────────┴───┴──────┴──────┴─────┴──────┘
 ```
 
-In this specific instance, the results of `ns test 'fn'` and `test ns` are the same because there is only 1 dfn in `#examples.my_namespace`. But as you add more test cases and dfns, use `test ns` to run all of them, or `ns test 'fn'` to run a select test.
+In this specific instance, the results of `ns test 'fn'` and `test ns` are the same because there is only 1 dfn in `#examples.my_namespace`. But as more test cases and dfns are added, use `test ns` to run all of them, or `ns test 'fn'` to run a select test.
 ```
       {(test ⍵)≡⍵ test'my_fn'}#.examples.my_namespace
 1
