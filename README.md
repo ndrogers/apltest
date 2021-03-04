@@ -51,6 +51,7 @@ To execute all test cases in this project:
 ```
 
 
+## Legal arguments to test
 
 |RESULT|⍺|⍵|Example|
 |---|---|---|---|
