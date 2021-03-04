@@ -20,11 +20,11 @@
          0=⍴⍵[;1] : header ⍪(0 6⍴⊂⍬)⍪(⊂'TOTALS'),(4⍴⍕0),⊂'N/A' ⍝ no functions in namespace
 
         ⍝ BODY::
-         total ← ⍕¨+⌿⍵[;1 2 3 4]                              ⍝ collected results of all runs
-         body  ← ⍵⌿⍨f←≠/⍵[;1 2]                               ⍝ select only the failing/errors
-         fmsg  ← ∊'FAILED: ',{∊⍺','⍵}/{⍵,(0=≢⍵)/⊂''}body[;0]  ⍝ failure message
-         msg   ← ⊂∊(('PASS'fmsg )[∨/f])                       ⍝ PASS or FAIL message
-         header ⍪ body ⍪(⊂'TOTALS'),total,msg                 ⍝ header + body + footer
+         total  ← ⍕¨+⌿⍵[;1 2 3 4]                             ⍝ collected results of all runs
+         body   ← ⍵⌿⍨f←≠/⍵[;1 2]                              ⍝ select only the failing/errors
+         fmsg   ← ∊'FAILED: ',{∊⍺','⍵}/{⍵,(0=≢⍵)/⊂''}body[;0] ⍝ failure message
+         footer ← (⊂'TOTALS'),total,⊂∊(('PASS'fmsg )[∨/f])    ⍝ PASS or FAIL message
+         header ⍪ body ⍪ footer                               ⍝ header + body + footer
      }
 
     ⍝ BODY::
