@@ -4,12 +4,14 @@ A simple test reporting tool with examples. For complete example usage see `./me
 
 ## Usage
 
-The entry point to this test reporting tool is `./test.aplf` To use this project:
+To use this project:
 
 ```APL
     ]link.create # 'path/to/apltest' 
 Linked: # ←→ path/to/apltest
 ```
+
+The entry point to this test reporting tool is `./test.aplf` 
 
 To execute all test cases in this project:
 ```APL
@@ -44,9 +46,9 @@ To execute all test cases in this project:
 
 
 
-|RESULT|⍺|⍵|Example|
+|RESULT|⍺|⍵|`Example     `|
 |---|---|---|---|
-|Run every dfn defined in every namespace in # with their corresponding test cases||⍬|`test ⍬`|
+|Run every dfn defined in each namespace in `#` with their corresponding test cases||⍬|`test ⍬`|
 |Run every defn defined in ⍵ with their corresponding test cases||namespace|`test #.aoc2015`|
 |Run the dfns ⍵ defined in ⍺|namespace|nested charvec|`#.aoc2015 test 's01' 's02`|
 |Run dfn ⍵ in ⍺|namespace|charvec|`#.aoc2015 test 's01'`|
