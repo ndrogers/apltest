@@ -100,7 +100,7 @@ my_fn_tests←(1 1) ((1 2) 3) ((2 4) 8) ((2 8 20) 30)
 ```
 Notice that the new test cases contain a tuple of arguments. Each cell is a tuple containing strictly 2 values. First is the input, second is the expected result. In the first test case, our input is `1`, and our expected result is `1`. In the last case, our input is `2 8 20` and our expected result is `30`
 
-Now call `test` to run this test:
+Now call `test` to run all tests in our new namespace (Note: You can run an individual case by calling `#.examples.my_namespace test 'my_fn'):
 
 ```APL
       test #.examples.my_namespace
