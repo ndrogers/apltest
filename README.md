@@ -119,7 +119,7 @@ Now call `test` to run all tests in our new namespace:
 └───────────────────────┴───┴──────┴──────┴─────┴───────────────┘
 ```
 
-OOPS! This failed. Looks like one of the test cases failed. The function didn't fail however, the test case is poorly defined because `8 ≠ +/ 2 4`. In this case rather than modifying `my_fn`, ensure the test cases are correct by either changing the expected result or the arguments.
+OOPS! Looks like one of the test cases failed. The function didn't fail however, the test case is poorly defined because `8 ≠ +/ 2 4`. In this case rather than modifying `my_fn`, ensure the test cases are correct by either changing the expected result or the arguments.
 
 
 ```APL
